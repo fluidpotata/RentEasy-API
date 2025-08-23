@@ -21,7 +21,7 @@ CORS(app)
 app.register_blueprint(server1)
 app.register_blueprint(server2) 
 
-@app.route('/')
+@app.route('/check')
 def index():
     return "Hello World!"
 
