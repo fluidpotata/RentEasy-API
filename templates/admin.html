@@ -1,0 +1,69 @@
+{% extends "adminbase.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+      <h1 class="h4">Dashboard</h1>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card p-3">
+          <h5 class="card-title">Create New Bills</h5>
+          <p class="card-text">Another bill cycle started? Generate bills for everyone!</p>
+          <a href="/generatebill">
+            <button class="btn btn-primary">Generate Bills</button>
+          </a>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card p-3">
+          <h5 class="card-title pt-3 pb-3">Check Tickets</h5>
+          <a href="/ticket">
+            <button class="btn btn-primary">See tickets</button>
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card p-3">
+          <h5 class="card-title">Join Requests</h5>
+          <p class="card-text">Current join requests: {{data['joinreqs']}}</p>
+          <a href="/seeapps">
+            <button class="btn btn-primary">See Applications</button>
+          </a>
+        </div>
+      </div>
+      
+      <div class="col">
+        <div class="card p-3">
+          <h5 class="card-title">Rent Status</h5>
+          <p class="card-text">Rent left to pay: {{data['rent']}}</p>
+          <a href="/seebills/rent">
+            <button class="btn btn-primary">See All</button>
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card p-3">
+          <h5 class="card-title">Internet Bill Status</h5>
+          <p class="card-text">Bill left to pay: {{data['internet']}}</p>
+          <a href="/seebills/internet">
+            <button class="btn btn-primary">See All</button>
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card p-3">
+          <h5 class="card-title">Utility Bill Status</h5>
+          <p class="card-text">Utility Bill left to pay: {{data['utility']}}</p>
+          <a href="/seebills/utility">
+            <button class="btn btn-primary">See All</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

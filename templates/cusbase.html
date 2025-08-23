@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block style %}
+{% endblock %}
+{% block nav %}
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar">
+            <div class="d-flex flex-column flex-wrap justify-content-between vh-100 p-3">
+                <div class="logo-section">
+                    <h3 class="fw-bold mb-4">Best Rooms</h3>
+                </div>
+                <div class="link-section">
+                    <ul class="nav flex-column justify-content-center">
+                        <li class="nav-item mb-2">
+                            <a class="nav-link btn btn-outline-secondary w-100" href="/customer">Dashboard</a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link btn btn-outline-secondary w-100" href="/paybill">Payments</a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link btn btn-outline-secondary w-100" href="/ticket">Create a ticket</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="signout">
+                    <a type="button" href="/logout" class="btn btn-outline-danger">Signout</a>
+                </div>
+            </div>
+        </nav>
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

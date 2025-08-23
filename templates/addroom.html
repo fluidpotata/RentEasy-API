@@ -1,0 +1,27 @@
+{%extends 'adminbase.html'%}
+{%block title%}Add Room{%endblock%}
+
+{%block content%}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 d-flex flex-column">
+    <div class="d-flex flex-column justify-content-center vh-100">
+        <div class="container mt-5">
+            <h1 class="mb-4">Add New Room</h1>
+            <form action="/rooms" method="post">
+                <div class="mb-3">
+                    <label for="roomName" class="form-label">Room Name:</label>
+                    <input type="text" class="form-control" id="roomName" name="roomName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="roomType" class="form-label">Room Type:</label>
+                    <select class="form-select" id="roomType" name="roomType" required>
+                        <option>Choose</option>
+                        <option value="Luxury">Luxury</option>
+                        <option value="Regular">Regular</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Room</button>
+            </form>
+        </div>
+    </div>
+</main>
+{%endblock%}

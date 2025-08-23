@@ -1,0 +1,58 @@
+{% extends "adminbase.html" %}
+
+{% block title %}View Rooms{% endblock %}
+
+{% block content %}
+
+
+<main class="col-md-9 bg-gradient ms-sm-auto col-lg-10 px-md-4 d-flex flex-column">
+    <div class="flex-grow-1 p-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <input type="text" class="form-control me-2" placeholder="Search">
+          <button class="btn btn-primary">Join Requests</button>
+        </div>
+  
+        <div class="card mb-3">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-0">Tenant X</h5>
+            <div class="d-flex gap-2">
+              <select class="form-select w-auto">
+                <option selected>Select an action</option>
+                <option value="1">Action 1</option>
+                <option value="2">Action 2</option>
+                <option value="3">Action 3</option>
+              </select>
+              <input type="text" class="form-control w-auto" placeholder="New Value">
+              <button class="btn btn-primary">Update</button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="card mb-3">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-0">Tenant X</h5>
+            <div class="d-flex gap-2">
+              <select class="form-select w-auto">
+                <option selected>Select an action</option>
+                <option value="1">Action 1</option>
+                <option value="2">Action 2</option>
+                <option value="3">Action 3</option>
+              </select>
+              <input type="text" class="form-control w-auto" placeholder="New Value">
+              <button class="btn btn-primary">Update</button>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-body">
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-body">
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
+
+{% endblock %}

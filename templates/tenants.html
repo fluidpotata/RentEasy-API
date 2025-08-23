@@ -1,0 +1,38 @@
+{% extends "adminbase.html" %}
+
+{% block title %}View Rooms{% endblock %}
+
+{% block content %}
+
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 d-flex flex-column">
+    <div class="flex-grow-1 p-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <a href="/seeapps"><button class="btn btn-primary">Join Requests</button></a>
+          <a href="/updateroom"><button class="btn btn-primary">Manage Rooms</button></a>
+        </div>
+
+  
+        {% for tenant in tenants %}
+        <div class="card mb-3">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-0">{{tenant[2]}}</h5>
+            <form action="/tenants" method="POST" class="d-flex gap-2">
+              <select class="form-select w-auto" name="option" required>
+                <option selected>Select an action</option>
+                <option value="rent">Change Rent</option>
+                <option value="internet">Change Internet Bill</option>
+                <option value="utility">Change Utility Bill</option>
+              </select>
+              <input type="text" class="form-control w-auto" name="val" placeholder="New Value">
+              <input type="hidden" name="tenantid" value="{{tenant[0]}}">
+              <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+</main>
+
+{% endblock %}

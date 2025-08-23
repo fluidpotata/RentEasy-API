@@ -1,0 +1,31 @@
+{% extends "cusbase.html" %}
+{% block title %}Create a ticket{% endblock %}
+{% block content %}
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 bg-dark">
+  <div class="d-flex flex-column flex-wrap justify-content-center vh-100">
+    <div class="d-flex justify-content-between">
+      <h1 class="h4">Create a ticket</h1>
+    </div>
+
+
+    <form action="/ticket" method="POST">
+      <div class="mb-3">
+        <label for="category" class="form-label">Choose category</label>
+        <select id="category" class="form-select" name="category">
+          <option selected>Select category</option>
+          <option value="Upgrade Room">Upgrade Room</option>
+          <option value="Issue with Billing">Issue with Billing</option>
+          <option value="Report a problem">Report a problem</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea id="description" class="form-control" rows="5" name="description"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</main>
+{% endblock %}
+>>>>>>> d3b4bd5 (Added base templates)

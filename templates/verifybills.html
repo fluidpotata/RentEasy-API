@@ -1,0 +1,46 @@
+{%extends "adminbase.html"%}
+{%block title%}Unpaid Bills{%endblock%}
+{%block content%}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 bg-dark">
+<div class="container py-4">
+  <h1 class="mb-4">All Bills</h1>
+  
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="table-primary">
+        <tr>
+          <th>#</th>
+          <th>Tenant Name</th>
+          <th>Amount</th>
+          <th>TRXID</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for bill in bills %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ getTenantName(bill[1]) }}</td>
+          <td>{{ bill[6] }}</td>
+          <td>{{ bill[4] }}</td>
+          <td>
+            <div class="d-flex gap-2">
+                <form action="/unverifiedbills" method="post">
+                    <input type="hidden" name="paymentid" value="{{bill[0]}}">
+                    <button type="submit" class="btn btn-md btn-outline-success">Confirm</a>
+                </form>
+                
+            </div>
+          </td>
+        </tr>
+        {% else %}
+        <tr>
+          <td colspan="6" class="text-center">No bills found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+</main>
+{% endblock %}

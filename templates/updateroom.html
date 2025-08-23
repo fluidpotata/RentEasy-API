@@ -1,0 +1,35 @@
+{%extends 'adminbase.html'%}
+{% block title %}Update Tenant Room{% endblock %}
+
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 bg-dark">
+<div class="container py-4">
+  <h1 class="mb-4">Update Tenant Room</h1>
+
+  
+  <form method="POST" action="{{ url_for('updateroom') }}">
+    <div class="mb-3">
+      <label for="tenantSelect" class="form-label">Select Tenant</label>
+      <select class="form-select" id="tenantSelect" name="tenantid" required>
+        <option value="" disabled selected>Choose a tenant</option>
+        {% for tenant in tenants %}
+        <option value="{{ tenant[0] }}">{{ tenant[2] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="roomSelect" class="form-label">Select Available Room</label>
+      <select class="form-select" id="roomSelect" name="roomid" required>
+        <option value="" disabled selected>Choose a room</option>
+        {% for room in rooms %}
+        <option value="{{ room[0] }}">{{ room[1] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Room</button>
+  </form>
+</div>
+</main>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends "cusbase.html" %}
+{% block title %}Customer Dashboard{% endblock %}
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+    <h1 class="h4">Dashboard</h1>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+
+    <div class="col">
+      <div class="card p-3">
+        <h5 class="card-title">You are logged in as:</h5>
+        <p class="card-text">{{data['username']}}</p>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card p-3">
+        <h5 class="card-title">Current Package:</h5>
+        <p class="card-text">{{data['package']}}</p>
+      </div>
+    </div>
+
+
+    <div class="col">
+      <div class="card p-3">
+        <h5 class="card-title">Create a Ticket</h5>
+        <p class="card-text">Unsolved tickets: {{data['ticketCount']}}</p>
+        <!-- <a href="/ticket">
+          <button class="btn btn-primary">Create Ticket</button>
+        </a> -->
+      </div>
+    </div>
+
+
+    <div class="col">
+      <div class="card p-3">
+        <h5 class="card-title">Monthly Rent</h5>
+        {% if not data['bill'] %}
+        <p class="card-textr text-success">Paid.</p>
+        <div>
+          <button class="btn btn-danger btn-sm aria-disabled" type="button" href="/paybill" style="width: auto;"
+            disabled>Pay Now</button>
+        </div>
+        {% endif %}
+        {% if data['bill'] %}
+        <p class="card-text text-danger">{{data['bill']}}</p>
+        <div>
+          <a class="btn btn-danger btn-sm" type="button" href="/paybill" style="width: auto;">Pay Now</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card p-3">
+        <h5 class="card-title">Internet Bill</h5>
+        {% if not data['internetbill'] %}
+        <p class="card-textr text-success">Paid.</p>
+        <div>
+          <button class="btn btn-danger btn-sm aria-disabled" type="button" href="/paybill" style="width: auto;"
+            disabled>Pay Now</button>
+        </div>
+        {% endif %}
+        {% if data['internetbill'] %}
+        <p class="card-text text-danger">{{data['internetbill']}}</p>
+        <div>
+          <a class="btn btn-danger btn-sm" type="button" href="/paybill" style="width: auto;">Pay Now</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+
+    <div class="col">
+      <div class="card p-3">
+        <h5 class="card-title">Other Utilites</h5>
+        {% if not data['utilitybill'] %}
+        <p class="card-textr text-success">Paid.</p>
+        <div>
+          <button class="btn btn-danger btn-sm aria-disabled" type="button" href="/paybill" style="width: auto;"
+            disabled>Pay Now</button>
+        </div>
+        {% endif %}
+        {% if data['utilitybill'] %}
+        <p class="card-text text-danger">{{data['utilitybill']}}</p>
+        <div>
+          <a class="btn btn-danger btn-sm" type="button" href="/paybill" style="width: auto;">Pay Now</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+</main>
+{% endblock %}
