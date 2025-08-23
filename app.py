@@ -2,7 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from api import server1
-# from server import server2
+from server import server2
 import os, datetime
 
 from dotenv import load_dotenv
@@ -19,7 +19,7 @@ CORS(app)
 
 
 app.register_blueprint(server1)
-# app.register_blueprint(server2) 
+app.register_blueprint(server2) 
 
 @app.route('/')
 def index():
