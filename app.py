@@ -21,9 +21,9 @@ CORS(app)
 app.register_blueprint(server1)
 # app.register_blueprint(server2) 
 
-app.route('/')
+@app.route('/')
 def index():
-    return "Server is running"
+    return "Hello World!"
 
 if __name__ == "__main__":
     app.run(debug=True)
