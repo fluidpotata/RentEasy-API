@@ -83,7 +83,7 @@ def ticket():
         return redirect(url_for('server2.ticket'))
 
 
-@server2.route('/seeserver2s', methods=['GET', 'POST'])
+@server2.route('/seeapps', methods=['GET', 'POST'])
 def seeserver2s():
     if session['role']=='admin':
         if request.method == 'POST':
@@ -94,11 +94,11 @@ def seeserver2s():
             username = request.form['username']
             password = request.form['password']
             allocateUser(username, password, req_id, phone, room_id, name)
-            return redirect(url_for('server2.seeserver2s'))
+            return redirect(url_for('server2.seeapps'))
         else:
             data = getJoinReqs()
             available_rooms = getAvailableRooms()
-            return render_template('server2lications.html', data=data, available_rooms=available_rooms)
+            return render_template('applications.html', data=data, available_rooms=available_rooms)
     else:
         return redirect(url_for('server2.customer'))
 
