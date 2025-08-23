@@ -36,8 +36,8 @@ def signup():
     if request.method == 'GET':
         if 'username' in session:
             if isAdmin(session['username']):
-                return redirect(url_for('admin'))
-            return redirect(url_for('dashboard'))
+                return redirect(url_for('server2.admin'))
+            return redirect(url_for('server2.dashboard'))
         else:
             return render_template('signup.html')
     elif request.method == 'POST':
@@ -52,7 +52,7 @@ def signup():
         if ifUserExists(username):
             return render_template('signup.html', error="Username taken! Try another username.")
         joinReq(name, room, phone, username, password)
-        return redirect(url_for('login'))
+        return redirect(url_for('server2.login'))
 
 
 @server2.route('/admin')
@@ -72,7 +72,7 @@ def customer():
 @server2.route('/ticket', methods=['GET', 'POST'])
 def ticket():
     if session['user']=='admin':
-        return redirect(url_for('ticketadmin'))
+        return redirect(url_for('server2.ticketadmin'))
     if request.method == 'GET':
         return render_template('ticket.html', info=getTicketUser(session.get('user')))
     
@@ -80,7 +80,7 @@ def ticket():
         category = request.form['category']
         description = request.form['description']
         createTicket(getUserID(session.get('user')), category, description)
-        return redirect(url_for('ticket'))
+        return redirect(url_for('server2.ticket'))
 
 
 @server2.route('/seeserver2s', methods=['GET', 'POST'])
@@ -94,13 +94,13 @@ def seeserver2s():
             username = request.form['username']
             password = request.form['password']
             allocateUser(username, password, req_id, phone, room_id, name)
-            return redirect(url_for('seeserver2s'))
+            return redirect(url_for('server2.seeserver2s'))
         else:
             data = getJoinReqs()
             available_rooms = getAvailableRooms()
             return render_template('server2lications.html', data=data, available_rooms=available_rooms)
     else:
-        return redirect(url_for('customer'))
+        return redirect(url_for('server2.customer'))
 
 
 @server2.route('/ticketadmin', methods=['GET', 'POST'])
@@ -109,19 +109,19 @@ def ticketadmin():
         if request.method == 'POST':
             reportID = request.form['ticket_id']
             closeTicket(reportID)
-            return redirect(url_for('ticketadmin'))
+            return redirect(url_for('server2.ticketadmin'))
         else:
             info = getTickets()
             return render_template('ticketadmin.html', tickets=info)
     else:
-        return redirect(url_for('ticket'))
+        return redirect(url_for('server2.ticket'))
 
 
 
 @server2.route('/generatebill')
 def generatebill():
     generateBill()
-    return redirect(url_for('admin'))
+    return redirect(url_for('server2.admin'))
 
 
 @server2.route('/paybill', methods=['GET', 'POST'])
@@ -131,7 +131,7 @@ def paybill():
         bill = request.form['bill']
         tid = request.form['tID']
         payBill(tenantid, bill, tid)
-        return redirect(url_for('paybill'))
+        return redirect(url_for('server2.paybill'))
     else:
         return render_template('billpay.html', data=getBills(session.get('id')))
 
@@ -145,7 +145,7 @@ def rooms():
         roomName = request.form['roomName']
         roomtype = request.form['roomType']
         addRoom(roomtype, roomName)
-        return redirect(url_for('rooms'))
+        return redirect(url_for('server2.rooms'))
 
 
 @server2.route('/tenants', methods=['GET', 'POST'])
@@ -155,7 +155,7 @@ def tenants():
         option = request.form['option']
         val = float(request.form['val'])
         updateTenant(tenantid,option, val)
-        return redirect(url_for('tenants'))
+        return redirect(url_for('server2.tenants'))
     elif request.method == 'GET':
         return render_template('tenants.html', tenants=getAllTenants())
 
@@ -171,7 +171,7 @@ def unverifiedbills():
     if request.method == 'POST':
         paymentid = request.form['paymentid']
         verifyBill(paymentid)
-        return redirect(url_for('unverifiedbills'))
+        return redirect(url_for('server2.unverifiedbills'))
     else:
         return render_template('verifybills.html', bills=getUnverifiedBills(), getTenantName=getTenantName)
 
@@ -182,7 +182,7 @@ def updateroom():
         tenantid = request.form['tenantid']
         roomid = request.form['roomid']
         updatePackage(tenantid, roomid)
-        return redirect(url_for('updateroom'))
+        return redirect(url_for('server2.updateroom'))
     else:
         return render_template('updateroom.html', tenants=getAllTenants(), rooms=getAvailableRooms())
 
@@ -190,7 +190,7 @@ def updateroom():
 @server2.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))
+    return redirect(url_for('server2.index'))
 
 
 if __name__ == '__main__':
