@@ -64,7 +64,6 @@ def admin():
         return jsonify({"error": "Unauthorized"}), 403
 
     data = {
-        "tickets": getTickets(),
         "count": getCountTickets(),
         "joinreqs": getJoinReqsCount(),
         "rent": getRentCount(),
