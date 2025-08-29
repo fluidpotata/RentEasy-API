@@ -214,10 +214,14 @@ def unverifiedbills():
         return jsonify({"bills": getUnverifiedBills()})
 
 
-@server1.route("/updateroom", methods=["POST"])
+@server1.route("/updateroom", methods=["GET","POST"])
 @jwt_required()
 def updateroom():
-    data = request.json
-    updatePackage(data.get("tenantid"), data.get("roomid"))
-    return jsonify({"message": "Room updated"})
+    if request.method == 'POST':
+        data = request.json
+        updatePackage(data.get("tenantid"), data.get("roomid"))
+        return jsonify({"message": "Room updated"})
+    else:
+        return jsonify("tenants":getAllTenants(), "rooms":getAvailableRooms())
+
 
