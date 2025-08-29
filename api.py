@@ -222,6 +222,6 @@ def updateroom():
         updatePackage(data.get("tenantid"), data.get("roomid"))
         return jsonify({"message": "Room updated"})
     else:
-        return jsonify("tenants":getAllTenants(), "rooms":getAvailableRooms())
+        return jsonify({"tenants":getAllTenants(), "rooms":getAvailableRooms()})
 
 
