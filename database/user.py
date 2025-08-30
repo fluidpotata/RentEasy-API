@@ -202,7 +202,7 @@ def getTenantName(tenantID):
     return result
 
 def getTenantID(userID):
-    result = pullFromDB(f"SELECT tenantID FROM Tenants WHERE tenantID='{userID}'")[0][0]
+    result = pullFromDB(f"SELECT tenantID FROM Tenants WHERE userID='{userID}'")[0][0]
     return result
     
 
