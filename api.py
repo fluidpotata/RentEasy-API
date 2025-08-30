@@ -165,10 +165,17 @@ def paybill():
 
     if request.method == "POST":
         data = request.json
-        payBill(data.get(getTenantID(data["id"])), data.get("bill"), data.get("tID"))
+        user_id = data.get("id")   # from client
+        bill_id = data.get("bill")
+        trx_id = data.get("tID")
+
+        tenant_id = getTenantID(user_id)  # server resolves tenant
+        payBill(tenant_id, bill_id, trx_id)
+
         return jsonify({"message": "Bill paid"})
     else:
         return jsonify({"bills": getBills(user["id"])})
+
 
 
 @server1.route("/rooms", methods=["GET", "POST"])
