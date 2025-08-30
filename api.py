@@ -22,12 +22,12 @@ def login():
         token = create_access_token(
             identity=json.dumps({"username": username, "role": "admin", "id": adminStat})
         )
-        return jsonify({"message": "Login successful", "access_token": token, "role": "admin"})
+        return jsonify({"message": "Login successful", "access_token": token, "role": "admin", "id": adminStat})
     elif userStat:
         token = create_access_token(
             identity=json.dumps({"username": username, "role": "user", "id": userStat})
         )
-        return jsonify({"message": "Login successful", "access_token": token, "role": "user"})
+        return jsonify({"message": "Login successful", "access_token": token, "role": "user", "id": userStat})
     else:
         return jsonify({"error": "Invalid username or password"}), 401
 
