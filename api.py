@@ -165,7 +165,7 @@ def paybill():
 
     if request.method == "POST":
         data = request.json
-        payBill(data.get("tenantid"), data.get("bill"), data.get("tID"))
+        payBill(data.get(getTenantID(data["id"])), data.get("bill"), data.get("tID"))
         return jsonify({"message": "Bill paid"})
     else:
         return jsonify({"bills": getBills(user["id"])})
