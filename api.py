@@ -205,9 +205,19 @@ def tenants():
 def seebills(billtype):
     bills = getUnpaidBills(billtype)
     returnbills = []
-    for i in range(len(bills)):
-        returnbills.append([i, getTenantName(bills[i][1]), bills[i][6], bills[i][5], bills[i][3]])
+
+    for i, bill in enumerate(bills):
+        returnbills.append({
+            "serial": i,
+            "name": getTenantName(bill[1]),
+            "amount": bill[6],
+            "month": bill[5],
+            "status": bill[3],
+            "type": bill[7]  # optional, in case you want bill type
+        })
+
     return jsonify({"bills": returnbills})
+
 
 
 @server1.route("/unverifiedbills", methods=["GET", "POST"])
