@@ -81,6 +81,14 @@ def getTicketUser(userid):
     connection.close()
     return result
 
+def getTicketsUser(userid):
+    connection = dbConnect()
+    cursor = connection.cursor()
+    cursor.execute(f"SELECT * FROM tickets WHERE tenantID='{getTenantID(userid)}'")
+    result = cursor.fetchall()
+    connection.close()
+    return result
+
 
 def getTicketUserCount(userid):
     connection = dbConnect()
@@ -191,6 +199,10 @@ def getUtilityBillStatus(userID):
 
 def getTenantName(tenantID):
     result = pullFromDB(f"SELECT name FROM Tenants WHERE tenantID='{tenantID}'")[0][0]
+    return result
+
+def getTenantID(userID):
+    result = pullFromDB(f"SELECT tenantID FROM Tenants WHERE tenantID='{userID}'")[0][0]
     return result
     
 

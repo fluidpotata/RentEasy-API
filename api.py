@@ -101,7 +101,7 @@ def ticket():
         return jsonify({"redirect": "/api/v1/ticketadmin"})
 
     if request.method == "GET":
-        return jsonify({"tickets": getTicketUser(user["username"])})
+        return jsonify({"tickets": getTicketsUser(user["id"])})
 
     if request.method == "POST":
         data = request.json
