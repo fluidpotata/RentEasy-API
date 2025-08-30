@@ -196,7 +196,11 @@ def tenants():
 @server1.route("/seebills/<string:billtype>")
 @jwt_required()
 def seebills(billtype):
-    return jsonify({"bills": getUnpaidBills(billtype)})
+    bills = getUnpaidBills(billtype)
+    returnbills = []
+    for i in range(len(bills)):
+        returnbills.append([i, getTenantName(bills[i][1]), bills[i][6], bills[i][5], bills[i][3]])
+    return jsonify({"bills": returnbills})
 
 
 @server1.route("/unverifiedbills", methods=["GET", "POST"])
