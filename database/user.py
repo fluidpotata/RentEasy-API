@@ -221,3 +221,9 @@ def updatePackage(tenantID, roomID):
     pushToDB(f"UPDATE Rooms SET status='Occupied' WHERE roomID='{roomID}'")
 
     return
+
+
+def getTenantRents(userId):
+    bills = pullFromDB(f"SELECT * FROM BILLS WHERE userID='{userId}'")
+    # [(1, '2', 'rent', 15000.0), (2, '2', 'utility', 7000.0), (3, '2', 'internet', 2000.0)]
+    return {bills[0][2]:int(bills[0][3]), bills[1][2]:int(bills[1][3]), bills[2][2]:int(bills[2][3])}

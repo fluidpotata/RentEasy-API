@@ -236,3 +236,6 @@ def updateroom():
         return jsonify({"tenants":getAllTenants(), "rooms":getAvailableRooms()})
 
 
+@server1.route("/getrent/<userid>")
+def getRent(userid):
+    return jsonify(getTenantRents(userid))
