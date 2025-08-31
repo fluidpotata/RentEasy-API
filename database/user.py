@@ -93,10 +93,10 @@ def getTicketsUser(userid):
 def getTicketUserCount(userid):
     connection = dbConnect()
     cursor = connection.cursor()
-    cursor.execute(f"SELECT COUNT(*) FROM Tickets WHERE tenantID='{getTenantID(userid)}'")
+    cursor.execute(f"SELECT COUNT(*) FROM Tickets WHERE tenantID='{getTenantID(userid)}' AND status='Open'")
     result = cursor.fetchall()
     connection.close()
-    return result
+    return result[0][0]
 
 def joinReq(name, room, phone, username, password):
     connection = dbConnect()
