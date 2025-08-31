@@ -93,7 +93,7 @@ def getTicketsUser(userid):
 def getTicketUserCount(userid):
     connection = dbConnect()
     cursor = connection.cursor()
-    cursor.execute(f"SELECT COUNT(*) FROM Tickets WHERE tenantID='{userid}'")
+    cursor.execute(f"SELECT COUNT(*) FROM Tickets WHERE tenantID='{getTenantID(userid)}'")
     result = cursor.fetchall()
     connection.close()
     return result
